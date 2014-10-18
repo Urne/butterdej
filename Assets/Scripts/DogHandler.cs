@@ -8,6 +8,7 @@ public class DogHandler : MonoBehaviour {
     public float timeToJump = 0;
     bool isJumping = false;
     Vector2 directionVector;
+	public bool goBack = false;
 
 	// Use this for initialization
 	void Start () {
@@ -16,9 +17,16 @@ public class DogHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if(goBack)
+		{
+			gameObject.rigidbody2D.velocity = new Vector2(-0.8f,gameObject.rigidbody2D.velocity.y );
+		}
+
         if(!isJumping)
         {
             print("Jumping");
+			goBack = false;
             isJumping = true;
             directionVector = player.transform.position - transform.position;
             directionVector = new Vector2(directionVector.x * (1/Mathf.Abs(directionVector.x)), 1);
@@ -36,10 +44,10 @@ public class DogHandler : MonoBehaviour {
             Destroy(this.gameObject);
         }
     }
-
+		
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if(coll.gameObject.tag == "ground")
+        if(coll.gameObject.tag == "assemblyLine")
         {
             StartCoroutine("waitForJump");
         }
@@ -49,6 +57,7 @@ public class DogHandler : MonoBehaviour {
     IEnumerator waitForJump()
     {
         print("Coroutiner started");
+		goBack = true;
         yield return new WaitForSeconds(timeToJump);
         isJumping = false;
         print("laters");

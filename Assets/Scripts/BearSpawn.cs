@@ -16,7 +16,7 @@ public class BearSpawn : MonoBehaviour {
 	void Update () {
 	    if(Input.GetKeyDown("b") && canSpawn)
         {
-            Instantiate(bear);
+            Instantiate(bear, transform.position, transform.rotation);
             canSpawn = false;
             StartCoroutine("WaitForSpawn");
         }
