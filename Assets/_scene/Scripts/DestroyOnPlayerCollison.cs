@@ -11,7 +11,8 @@ public class DestroyOnPlayerCollison : MonoBehaviour {
 			Destroy(gameObject);
 
 			//få det til at virke på player mass variablen i stedet
-			coll.gameObject.GetComponent<PlayerObjectPickUp>().girlWeight ++;
+			//coll.gameObject.GetComponent<PlayerObjectPickUp>().girlWeight ++;
+			//Destroy(other.gameObject);
 			//print (coll.gameObject.GetComponent<PlayerObjectPickUp>().girlWeight);
 		}
 	}  
