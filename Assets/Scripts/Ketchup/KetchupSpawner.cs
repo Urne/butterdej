@@ -1,0 +1,33 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class KetchupSpawner : MonoBehaviour {
+
+
+    public GameObject ketchup;
+    bool canSpawn = true;
+    public float spawnCooldown = 0;
+
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+        if(Input.GetKeyDown("k") && canSpawn)
+        {
+            GameObject ketchupInstance = (GameObject)Instantiate(ketchup, this.transform.position, this.transform.rotation);
+            ketchupInstance.rigidbody2D.AddForce(-Vector2.up);
+            canSpawn = false;
+            StartCoroutine("WaitForSpawn");
+        }	
+	}
+
+    IEnumerator WaitForSpawn()
+    {
+        yield return new WaitForSeconds(spawnCooldown);
+        canSpawn = true;
+    }
+}
