@@ -27,8 +27,19 @@ public class HammerMovement : MonoBehaviour {
 		rigidbody2D.velocity = new Vector2(0,5);
 	}
 
-	void OnTriggerEnter2D(Collider2D coll) {
+	void OnCollisionEnter2D(Collision2D coll) {
 		
+
+	}
+
+	void OnTriggerEnter2D(Collider2D coll) {
+
+		if(coll.gameObject.name == "BeltMaster"){	
+			StartCoroutine(WaitAndPrint(0.5F));
+			print ("yay");
+		}else if(coll.gameObject.name == "Player")
+			Destroy(coll.gameObject);
+
 		if (coll.gameObject.tag != "assemblyLine" && coll.gameObject.name != "MainCamera"){
 			//rigidbody2D.gravityScale = 0;
 

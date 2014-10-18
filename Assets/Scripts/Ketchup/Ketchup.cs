@@ -18,11 +18,13 @@ public class Ketchup : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if(coll.gameObject.tag == "ground")
+		print(coll.gameObject.name);
+		if(coll.gameObject.tag == "assemblyLine")
         {
             print("hello");
-            Instantiate(ketchupFloor, new Vector2(this.transform.position.x, coll.transform.position.y + coll.transform.lossyScale.y + 0.1f), this.transform.rotation);
-            Destroy(this.gameObject);
+            GameObject splash = (GameObject)Instantiate(ketchupFloor, new Vector2(this.transform.position.x, coll.transform.position.y), this.transform.rotation);
+			splash.rigidbody2D.velocity = new Vector2( coll.gameObject.GetComponent<AssemblyLineMovement>().BeltSpeed ,splash.rigidbody2D.velocity.y);
+			Destroy(this.gameObject);
         }
     }
 }

@@ -7,8 +7,12 @@ public class AssemblyLineMovement : MonoBehaviour {
 
 	void OnCollisionStay2D(Collision2D coll) {
     	
-		if (coll.gameObject.tag != "NotAffectedByConveyorBelt"	)
-			coll.gameObject.rigidbody2D.velocity = new Vector2(-BeltSpeed,0);
+		if (coll.gameObject.tag != "NotAffectedByConveyorBelt" && coll.gameObject.tag != "Player") 
+		{
+			print ("yo der");
+			coll.gameObject.rigidbody2D.velocity = new Vector2(BeltSpeed,0);
 			//coll.gameObject.rigidbody2D.AddForce(-Vector2.right * 10);
+		}
+
 	}
 }
