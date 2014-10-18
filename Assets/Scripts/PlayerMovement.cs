@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour {
     public float maxSpeed = 0;
     public float speedMultiplier = 0;
     public float jumpMultiplier = 0;
+    public float stopMultiplier = 0;
     bool isJumping = false;
 
 
@@ -29,7 +30,7 @@ public class PlayerMovement : MonoBehaviour {
             
             if(Input.GetAxis("Horizontal") < 0 && rigidbody2D.velocity.x > (-1 * maxSpeed))
             {
-                print(rigidbody2D.velocity.x);
+
                 rigidbody2D.AddForce(Vector2.right * speedMultiplier * Input.GetAxis("Horizontal"));
             }
             else if(Input.GetAxis("Horizontal") > 0 && rigidbody2D.velocity.x < (maxSpeed))
@@ -38,15 +39,21 @@ public class PlayerMovement : MonoBehaviour {
             }
 
         }
+        else
+        {
+            if(rigidbody2D.velocity.x != 0 && !isJumping)
+            {
+                rigidbody2D.velocity = new Vector2((rigidbody2D.velocity.x / 100) * stopMultiplier, rigidbody2D.velocity.y);
+            }
+        
+        
+        }
 	}
 
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if(coll.gameObject.tag == "ground")
-        {
-            isJumping = false;
-        }
+        isJumping = false;
     }
 
 
