@@ -54,6 +54,11 @@ public class PlayerMovement : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D coll)
     {
         isJumping = false;
+
+        if(coll.gameObject.tag == "Enemy")
+        {
+            Destroy(this.gameObject);
+        }
     }
 
 
