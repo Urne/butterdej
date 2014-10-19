@@ -7,6 +7,7 @@ public class KetchupSpawner : MonoBehaviour {
     public GameObject ketchup;
     bool canSpawn = true;
     public float spawnCooldown = 0;
+	public AudioClip sound;
 
 
 	// Use this for initialization
@@ -16,9 +17,10 @@ public class KetchupSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(Input.GetKeyDown("k") && canSpawn)
+        if(Input.GetKeyDown("l") && canSpawn)
         {
-            GameObject ketchupInstance = (GameObject)Instantiate(ketchup, this.transform.position, this.transform.rotation);
+			AudioSource.PlayClipAtPoint(sound, gameObject.transform.position);
+            GameObject ketchupInstance = (GameObject)Instantiate(ketchup, new Vector2(this.transform.position.x, this.transform.position.y-3.5f), this.transform.rotation);
             ketchupInstance.rigidbody2D.AddForce(-Vector2.up);
             canSpawn = false;
             StartCoroutine("WaitForSpawn");

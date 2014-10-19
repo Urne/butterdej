@@ -10,16 +10,25 @@ public class PlayerMovement : MonoBehaviour {
     public bool isJumping = false;
 	public bool canMove = true;
 	public bool goBack = false;
-
+	float standardScale;
 
 	// Use this for initialization
 	void Start () {
-        
+		standardScale = transform.localScale.x;
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (rigidbody2D.velocity.x > 0) 
+		{
+			transform.localScale = new Vector2 (standardScale, transform.localScale.y);		
+		} 
+		else if (rigidbody2D.velocity.x < -0.8f) 
+		{
+			transform.localScale = new Vector2 (-standardScale, transform.localScale.y);		
+		}
         
 		if(goBack)
 		{

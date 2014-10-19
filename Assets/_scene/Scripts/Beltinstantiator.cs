@@ -24,7 +24,7 @@ public class Beltinstantiator : MonoBehaviour {
 		for (int i = 0; i <= beltLength; i++) {
 			
 			Instantiate(beltSection, new Vector3(currentX, currentY, 0), Quaternion.identity);
-			if(i%2 == 0)
+			//if(i%2 == 0)
 			Instantiate(roller, new Vector3(currentX, currentY-offsetToRoller, 0), Quaternion.identity);
 			//penis.rigidbody2D.velocity = new Vector2(-5,0);
 			//GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);

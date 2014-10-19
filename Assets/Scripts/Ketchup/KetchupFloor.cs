@@ -17,7 +17,7 @@ public class KetchupFloor : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D coll)
 	{
-		print ("kan du huske");
+
 		if(coll.gameObject.tag == "Player")
 		{
 			StartCoroutine(DenyWalk(coll.gameObject));
@@ -28,8 +28,11 @@ public class KetchupFloor : MonoBehaviour {
 	{
 		gameobject.GetComponent<PlayerMovement>().canMove = false;
 		gameobject.GetComponent<PlayerMovement>().goBack = true;
+		gameobject.GetComponent<Animator>().SetBool("Falling", true);
 		yield return new WaitForSeconds(secondsIncapacitated);
+		gameobject.GetComponent<Animator>().SetBool("Falling", false);
 		gameobject.GetComponent<PlayerMovement>().canMove = true;
 		gameobject.GetComponent<PlayerMovement>().goBack = false;
+
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//IS NOT USED
 
 public class instanciateBelt : MonoBehaviour {
 	
